@@ -108,4 +108,14 @@ public class BurgerTest {
         assertEquals(ingredientMock1, burger.ingredients.get(2));
     }
 
+    @Test
+    public void testGetPriceWithNoIngredients() {
+        when(bunMock.getPrice()).thenReturn(100.0f);
+        burger.setBuns(bunMock);
+
+        float price = burger.getPrice();
+
+        assertEquals(200.0f, price, 0.001);
+    }
+
 }
