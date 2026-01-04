@@ -92,5 +92,20 @@ public class BurgerTest {
         burger.removeIngredient(5);
     }
 
+    @Test
+    public void testMoveIngredient() {
+        burger.addIngredient(ingredientMock1);
+        burger.addIngredient(ingredientMock2);
+        burger.addIngredient(ingredientMock3);
+
+        List<Ingredient> originalOrder = List.of(ingredientMock1, ingredientMock2, ingredientMock3);
+
+        burger.moveIngredient(0, 2);
+
+        assertEquals(3, burger.ingredients.size());
+        assertEquals(ingredientMock2, burger.ingredients.get(0));
+        assertEquals(ingredientMock3, burger.ingredients.get(1));
+        assertEquals(ingredientMock1, burger.ingredients.get(2));
+    }
 
 }
