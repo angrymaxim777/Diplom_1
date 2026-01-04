@@ -74,5 +74,18 @@ public class BurgerTest {
         assertSame(ingredientMock2, burger.ingredients.get(1));
     }
 
+    @Test
+    public void testRemoveIngredientByIndex() {
+        burger.addIngredient(ingredientMock1);
+        burger.addIngredient(ingredientMock2);
+
+        burger.removeIngredient(0);
+
+        assertEquals(1, burger.ingredients.size());
+        assertSame(ingredientMock2, burger.ingredients.get(0));
+    }
+
+
+
 
 }
