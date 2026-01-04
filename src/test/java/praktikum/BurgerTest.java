@@ -183,4 +183,31 @@ public class BurgerTest {
                 "\nPrice: 500,000000\n";
         assertEquals(expected, receipt);
     }
+
+    @Test
+    public void testGetReceiptWithMultipleIngredients() {
+        when(bunMock.getName()).thenReturn("red bun");
+        when(bunMock.getPrice()).thenReturn(300.0f);
+
+        when(ingredientMock1.getName()).thenReturn("hot sauce");
+        when(ingredientMock1.getType()).thenReturn(IngredientType.SAUCE);
+        when(ingredientMock1.getPrice()).thenReturn(100.0f);
+
+        when(ingredientMock2.getName()).thenReturn("cutlet");
+        when(ingredientMock2.getType()).thenReturn(IngredientType.FILLING);
+        when(ingredientMock2.getPrice()).thenReturn(200.0f);
+
+        burger.setBuns(bunMock);
+        burger.addIngredient(ingredientMock1);
+        burger.addIngredient(ingredientMock2);
+
+        String receipt = burger.getReceipt();
+
+        String expected = "(==== red bun ====)\n" +
+                "= sauce hot sauce =\n" +
+                "= filling cutlet =\n" +
+                "(==== red bun ====)\n" +
+                "\nPrice: 900,000000\n";
+        assertEquals(expected, receipt);
+    }
 }
