@@ -148,4 +148,18 @@ public class BurgerTest {
         assertEquals(350.0f, price, 0.001);
     }
 
+    @Test
+    public void testGetReceiptWithOnlyBun() {
+        when(bunMock.getName()).thenReturn("black bun");
+        when(bunMock.getPrice()).thenReturn(100.0f);
+
+        burger.setBuns(bunMock);
+
+        String receipt = burger.getReceipt();
+
+        String expected = "(==== black bun ====)\n" +
+                "(==== black bun ====)\n" +
+                "\nPrice: 200,000000\n";
+        assertEquals(expected, receipt);
+    }
 }
