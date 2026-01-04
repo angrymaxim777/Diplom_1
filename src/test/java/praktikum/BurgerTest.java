@@ -361,3 +361,73 @@ class BurgerPriceTest {
         assertEquals(expectedTotal, actualPrice, 0.001);
     }
 }
+
+@RunWith(Parameterized.class)
+class BurgerMoveIngredientTest {
+
+    @Mock
+    private Bun bunMock;
+
+    @Mock
+    private Ingredient ingredientMock1;
+
+    @Mock
+    private Ingredient ingredientMock2;
+
+    @Mock
+    private Ingredient ingredientMock3;
+
+    private Burger burger;
+
+    private int fromIndex;
+    private int toIndex;
+
+    public BurgerMoveIngredientTest(int fromIndex, int toIndex) {
+        this.fromIndex = fromIndex;
+        this.toIndex = toIndex;
+    }
+
+    @Parameterized.Parameters
+    public static Collection<Object[]> data() {
+        return Arrays.asList(new Object[][] {
+                {0, 1},
+                {1, 0},
+                {0, 2},
+                {2, 0},
+                {1, 2},
+                {2, 1}
+        });
+    }
+
+    @Before
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+        burger = new Burger();
+
+        when(ingredientMock1.getName()).thenReturn("ingredient1");
+        when(ingredientMock1.getType()).thenReturn(IngredientType.SAUCE);
+
+        when(ingredientMock2.getName()).thenReturn("ingredient2");
+        when(ingredientMock2.getType()).thenReturn(IngredientType.FILLING);
+
+        when(ingredientMock3.getName()).thenReturn("ingredient3");
+        when(ingredientMock3.getType()).thenReturn(IngredientType.SAUCE);
+
+        burger.addIngredient(ingredientMock1);
+        burger.addIngredient(ingredientMock2);
+        burger.addIngredient(ingredientMock3);
+    }
+
+    @Test
+    public void testMoveIngredientParameterized() {
+        Ingredient ingredientToMove = burger.ingredients.get(fromIndex);
+
+        burger.moveIngredient(fromIndex, toIndex);
+
+        assertEquals(ingredientToMove, burger.ingredients.get(toIndex));
+
+        assertEquals(3, burger.ingredients.size());
+
+        assertEquals(3, burger.ingredients.stream().distinct().count());
+    }
+}
