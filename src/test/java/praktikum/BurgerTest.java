@@ -266,4 +266,34 @@ public class BurgerTest {
         assertEquals(ingredientMock2, burger.ingredients.get(1));
         assertEquals(ingredientMock1, burger.ingredients.get(2));
     }
+
+    @Test
+    public void testBurgerStateConsistency() {
+        when(bunMock.getName()).thenReturn("test bun");
+        when(bunMock.getPrice()).thenReturn(50.0f);
+
+        when(ingredientMock1.getName()).thenReturn("ingredient1");
+        when(ingredientMock1.getType()).thenReturn(IngredientType.SAUCE);
+        when(ingredientMock1.getPrice()).thenReturn(10.0f);
+
+        when(ingredientMock2.getName()).thenReturn("ingredient2");
+        when(ingredientMock2.getType()).thenReturn(IngredientType.FILLING);
+        when(ingredientMock2.getPrice()).thenReturn(20.0f);
+
+        burger.setBuns(bunMock);
+        burger.addIngredient(ingredientMock1);
+        burger.addIngredient(ingredientMock2);
+
+        float price1 = burger.getPrice();
+        String receipt1 = burger.getReceipt();
+
+        burger.moveIngredient(0, 1);
+
+        float price2 = burger.getPrice();
+        String receipt2 = burger.getReceipt();
+
+        assertEquals(price1, price2, 0.001);
+
+        assertNotEquals(receipt1, receipt2);
+    }
 }
