@@ -119,6 +119,19 @@ public class BurgerTest {
     }
 
     @Test
+    public void testGetPriceWithOneIngredient() {
+        when(bunMock.getPrice()).thenReturn(100.0f);
+        when(ingredientMock1.getPrice()).thenReturn(50.0f);
+
+        burger.setBuns(bunMock);
+        burger.addIngredient(ingredientMock1);
+
+        float price = burger.getPrice();
+
+        assertEquals(250.0f, price, 0.001);
+    }
+
+    @Test
     public void testGetPriceWithMultipleIngredients() {
         when(bunMock.getPrice()).thenReturn(100.0f);
         when(ingredientMock1.getPrice()).thenReturn(50.0f);
