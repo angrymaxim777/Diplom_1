@@ -58,7 +58,21 @@ public class BurgerTest {
         assertSame(ingredientMock1, burger.ingredients.get(0));
     }
 
+    @Test
+    public void testAddMultipleIngredients() {
+        when(ingredientMock1.getName()).thenReturn("hot sauce");
+        when(ingredientMock1.getType()).thenReturn(IngredientType.SAUCE);
 
+        when(ingredientMock2.getName()).thenReturn("cutlet");
+        when(ingredientMock2.getType()).thenReturn(IngredientType.FILLING);
+
+        burger.addIngredient(ingredientMock1);
+        burger.addIngredient(ingredientMock2);
+
+        assertEquals(2, burger.ingredients.size());
+        assertSame(ingredientMock1, burger.ingredients.get(0));
+        assertSame(ingredientMock2, burger.ingredients.get(1));
+    }
 
 
 }
