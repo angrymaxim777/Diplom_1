@@ -85,7 +85,12 @@ public class BurgerTest {
         assertSame(ingredientMock2, burger.ingredients.get(0));
     }
 
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testRemoveIngredientWithInvalidIndex() {
+        burger.addIngredient(ingredientMock1);
 
+        burger.removeIngredient(5);
+    }
 
 
 }
