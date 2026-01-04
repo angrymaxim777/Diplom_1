@@ -210,4 +210,25 @@ public class BurgerTest {
                 "\nPrice: 900,000000\n";
         assertEquals(expected, receipt);
     }
+
+    @Test
+    public void testGetReceiptIngredientTypesFormatting() {
+        when(bunMock.getName()).thenReturn("black bun");
+        when(bunMock.getPrice()).thenReturn(100.0f);
+
+        when(ingredientMock1.getName()).thenReturn("sour cream");
+        when(ingredientMock1.getType()).thenReturn(IngredientType.SAUCE);
+
+        when(ingredientMock2.getName()).thenReturn("dinosaur");
+        when(ingredientMock2.getType()).thenReturn(IngredientType.FILLING);
+
+        burger.setBuns(bunMock);
+        burger.addIngredient(ingredientMock1);
+        burger.addIngredient(ingredientMock2);
+
+        String receipt = burger.getReceipt();
+
+        assertTrue(receipt.contains("= sauce sour cream ="));
+        assertTrue(receipt.contains("= filling dinosaur ="));
+    }
 }
