@@ -231,4 +231,23 @@ public class BurgerTest {
         assertTrue(receipt.contains("= sauce sour cream ="));
         assertTrue(receipt.contains("= filling dinosaur ="));
     }
+
+    @Test
+    public void testGetReceiptTotalPrice() {
+        when(bunMock.getName()).thenReturn("black bun");
+        when(bunMock.getPrice()).thenReturn(100.0f);
+
+        when(ingredientMock1.getName()).thenReturn("hot sauce");
+        when(ingredientMock1.getType()).thenReturn(IngredientType.SAUCE);
+        when(ingredientMock1.getPrice()).thenReturn(100.0f);
+
+        burger.setBuns(bunMock);
+        burger.addIngredient(ingredientMock1);
+
+        String receipt = burger.getReceipt();
+        float calculatedPrice = burger.getPrice();
+
+        String priceString = String.format("\nPrice: %f\n", calculatedPrice);
+        assertTrue(receipt.contains(priceString));
+    }
 }
