@@ -250,4 +250,20 @@ public class BurgerTest {
         String priceString = String.format("\nPrice: %f\n", calculatedPrice);
         assertTrue(receipt.contains(priceString));
     }
+
+    @Test
+    public void testIngredientOrderAfterOperations() {
+        burger.addIngredient(ingredientMock1);
+        burger.addIngredient(ingredientMock2);
+        burger.addIngredient(ingredientMock3);
+
+        burger.removeIngredient(1);
+        burger.addIngredient(ingredientMock2);
+        burger.moveIngredient(0, 2);
+
+        assertEquals(3, burger.ingredients.size());
+        assertEquals(ingredientMock3, burger.ingredients.get(0));
+        assertEquals(ingredientMock2, burger.ingredients.get(1));
+        assertEquals(ingredientMock1, burger.ingredients.get(2));
+    }
 }
