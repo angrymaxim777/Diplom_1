@@ -46,4 +46,19 @@ public class BurgerTest {
         assertSame(bunMock, burger.bun);
     }
 
+    @Test
+    public void testAddIngredient() {
+        when(ingredientMock1.getName()).thenReturn("hot sauce");
+        when(ingredientMock1.getType()).thenReturn(IngredientType.SAUCE);
+        when(ingredientMock1.getPrice()).thenReturn(100.0f);
+
+        burger.addIngredient(ingredientMock1);
+
+        assertEquals(1, burger.ingredients.size());
+        assertSame(ingredientMock1, burger.ingredients.get(0));
+    }
+
+
+
+
 }
