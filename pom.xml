@@ -72,6 +72,9 @@
                             <rules>
                                 <rule>
                                     <element>CLASS</element>
+                                    <includes>
+                                        <include>**/Burger</include>
+                                    </includes>
                                     <limits>
                                         <limit>
                                             <counter>LINE</counter>
