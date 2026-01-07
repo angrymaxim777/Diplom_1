@@ -1,23 +1,5 @@
-# ==================== MAVEN ====================
-# Игнорируем всю папку target, НО с исключениями для отчета JaCoCo
 target/*
-# Разрешаем папку site (для отчетов)
 !target/site/
-# Игнорируем все в site
-target/site/*
-# Разрешаем папку jacoco
-!target/site/jacoco/
-# Игнорируем все в jacoco
-target/site/jacoco/*
-# Разрешаем конкретные файлы отчета JaCoCo
-!target/site/jacoco/index.html
-!target/site/jacoco/jacoco.xml
-!target/site/jacoco/jacoco.csv
-!target/site/jacoco/*.css
-!target/site/jacoco/*.js
-!target/site/jacoco/*.png
-!target/site/jacoco/*.gif
-!target/site/jacoco/resources/
 
 # ==================== INTELLIJ IDEA ====================
 .idea/
