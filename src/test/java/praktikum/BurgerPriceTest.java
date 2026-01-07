@@ -19,22 +19,22 @@ public class BurgerPriceTest {
     private Bun bunMock;
 
     @Mock
-    private Ingredient ingredientMock1;
+    private Ingredient firstIngredientMock;
 
     @Mock
-    private Ingredient ingredientMock2;
+    private Ingredient secondIngredientMock;
 
     private Burger burger;
 
     private float bunPrice;
-    private float ingredientPrice1;
-    private float ingredientPrice2;
+    private float firstIngredientPrice;
+    private float secondIngredientPrice;
     private float expectedTotal;
 
-    public BurgerPriceTest(float bunPrice, float ingredientPrice1, float ingredientPrice2, float expectedTotal) {
+    public BurgerPriceTest(float bunPrice, float firstIngredientPrice, float secondIngredientPrice, float expectedTotal) {
         this.bunPrice = bunPrice;
-        this.ingredientPrice1 = ingredientPrice1;
-        this.ingredientPrice2 = ingredientPrice2;
+        this.firstIngredientPrice = firstIngredientPrice;
+        this.secondIngredientPrice = secondIngredientPrice;
         this.expectedTotal = expectedTotal;
     }
 
@@ -54,21 +54,21 @@ public class BurgerPriceTest {
         burger = new Burger();
 
         when(bunMock.getPrice()).thenReturn(bunPrice);
-        when(ingredientMock1.getPrice()).thenReturn(ingredientPrice1);
-        when(ingredientMock2.getPrice()).thenReturn(ingredientPrice2);
+        when(firstIngredientMock.getPrice()).thenReturn(firstIngredientPrice);
+        when(secondIngredientMock.getPrice()).thenReturn(secondIngredientPrice);
 
         when(bunMock.getName()).thenReturn("test bun");
-        when(ingredientMock1.getName()).thenReturn("ingredient1");
-        when(ingredientMock1.getType()).thenReturn(IngredientType.SAUCE);
-        when(ingredientMock2.getName()).thenReturn("ingredient2");
-        when(ingredientMock2.getType()).thenReturn(IngredientType.FILLING);
+        when(firstIngredientMock.getName()).thenReturn("ingredient1");
+        when(firstIngredientMock.getType()).thenReturn(IngredientType.SAUCE);
+        when(secondIngredientMock.getName()).thenReturn("ingredient2");
+        when(secondIngredientMock.getType()).thenReturn(IngredientType.FILLING);
     }
 
     @Test
     public void testGetPriceParameterized() {
         burger.setBuns(bunMock);
-        burger.addIngredient(ingredientMock1);
-        burger.addIngredient(ingredientMock2);
+        burger.addIngredient(firstIngredientMock);
+        burger.addIngredient(secondIngredientMock);
 
         float actualPrice = burger.getPrice();
 

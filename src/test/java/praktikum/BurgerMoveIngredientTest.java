@@ -19,13 +19,13 @@ public class BurgerMoveIngredientTest {
     private Bun bunMock;
 
     @Mock
-    private Ingredient ingredientMock1;
+    private Ingredient firstIngredientMock;
 
     @Mock
-    private Ingredient ingredientMock2;
+    private Ingredient secondIngredientMock;
 
     @Mock
-    private Ingredient ingredientMock3;
+    private Ingredient thirdIngredientMock;
 
     private Burger burger;
 
@@ -54,30 +54,27 @@ public class BurgerMoveIngredientTest {
         MockitoAnnotations.initMocks(this);
         burger = new Burger();
 
-        when(ingredientMock1.getName()).thenReturn("ingredient1");
-        when(ingredientMock1.getType()).thenReturn(IngredientType.SAUCE);
+        when(firstIngredientMock.getName()).thenReturn("ingredient1");
+        when(firstIngredientMock.getType()).thenReturn(IngredientType.SAUCE);
 
-        when(ingredientMock2.getName()).thenReturn("ingredient2");
-        when(ingredientMock2.getType()).thenReturn(IngredientType.FILLING);
+        when(secondIngredientMock.getName()).thenReturn("ingredient2");
+        when(secondIngredientMock.getType()).thenReturn(IngredientType.FILLING);
 
-        when(ingredientMock3.getName()).thenReturn("ingredient3");
-        when(ingredientMock3.getType()).thenReturn(IngredientType.SAUCE);
+        when(thirdIngredientMock.getName()).thenReturn("ingredient3");
+        when(thirdIngredientMock.getType()).thenReturn(IngredientType.SAUCE);
 
-        burger.addIngredient(ingredientMock1);
-        burger.addIngredient(ingredientMock2);
-        burger.addIngredient(ingredientMock3);
+        burger.addIngredient(firstIngredientMock);
+        burger.addIngredient(secondIngredientMock);
+        burger.addIngredient(thirdIngredientMock);
     }
 
     @Test
-    public void testMoveIngredientParameterized() {
+    public void testMoveIngredientChangesPosition() {
         Ingredient ingredientToMove = burger.ingredients.get(fromIndex);
 
         burger.moveIngredient(fromIndex, toIndex);
 
-        assertEquals(ingredientToMove, burger.ingredients.get(toIndex));
-        assertEquals(3, burger.ingredients.size());
-
-        long distinctCount = burger.ingredients.stream().distinct().count();
-        assertEquals(3, distinctCount);
+        assertEquals("Ингредиент должен переместиться на новую позицию",
+                ingredientToMove, burger.ingredients.get(toIndex));
     }
 }
