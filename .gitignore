@@ -1,0 +1,53 @@
+target/*
+!target/site/
+
+# ==================== INTELLIJ IDEA ====================
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+.idea/runConfigurations/
+
+# ==================== ECLIPSE ====================
+.classpath
+.project
+.settings/
+bin/
+
+# ==================== NETBEANS ====================
+nbproject/
+nb-configuration.xml
+build/
+nbbuild/
+dist/
+nbdist/
+
+# ==================== VS CODE ====================
+.vscode/
+
+# ==================== OS ====================
+# Mac
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# ==================== LOGS ====================
+*.log
+logs/
+*.logs
+
+# ==================== COVERAGE ====================
+*.exec
+*.ser
+coverage/
